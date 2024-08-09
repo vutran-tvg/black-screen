@@ -1,5 +1,38 @@
 <!DOCTYPE html>
 <html>
+  <script>
+    function toggleFullScreen() {
+    const doc = window.document;
+    const docEl = doc.documentElement;
+
+    var requestFullScreen =
+      docEl.requestFullscreen ||
+      docEl.mozRequestFullScreen ||
+      docEl.webkitRequestFullScreen ||
+      docEl.msRequestFullscreen;
+    var cancelFullScreen =
+      doc.exitFullscreen ||
+      doc.mozCancelFullScreen ||
+      doc.webkitExitFullscreen ||
+      doc.msExitFullscreen;
+  
+    if (
+      !doc.fullscreenElement &&
+      !doc.mozFullScreenElement &&
+      !doc.webkitFullscreenElement &&
+      !doc.msFullscreenElement
+    ) {
+      requestFullScreen.call(docEl);
+    } else {
+      cancelFullScreen.call(doc);
+    }
+  }
+
+  document.addEventListener("dblclick", () => {
+    toggleFullScreen();
+  });
+
+  </script>
   <body style="width: 100vw;height: 100vh;background-color:black"></body>
 
 </html>
